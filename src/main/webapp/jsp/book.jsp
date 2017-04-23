@@ -38,6 +38,13 @@
 		                	out.print("<div name=\"id\" value=\"" + book.getId() + "\"></div>");
 			    		    out.print("<input type=\"submit\" value=\"Edit\">");
 			    		out.print("</form></td>");
+			    		
+			    		//bouton ajouter au panier
+			    		out.print("<td><form method=\"POST\" action=\"ajouterAuPanier?id=" + book.getId() + "\">");
+		                	out.print("<div name=\"id\" value=\"" + book.getId() + "\"></div>");
+			    		    out.print("<input type=\"submit\" value=\"Ajouter au panier\">");
+			    		out.print("</form></td>");
+			    		
 		                out.print("</tr>");
 		            }
 		        %>
@@ -49,8 +56,9 @@
         <form action="create">
 		    <input type="submit" value="Create book">
 		</form>
+		
         
-        
+        <a href="/panier">Voir mon panier</a>
         
         <script type="text/javascript" >
         	

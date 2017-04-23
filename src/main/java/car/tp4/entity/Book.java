@@ -13,6 +13,7 @@ public class Book {
 	private String author;
 	private String title;
 	private int year;
+	private int quantity;
 
 	public Book() {
 		
@@ -22,6 +23,14 @@ public class Book {
 		this.author = author;
 		this.title = title;
 		this.year = year;
+		this.quantity = 1;
+	}
+	
+	public Book(String author, String title, int year,  int quantity) {
+		this.author = author;
+		this.title = title;
+		this.year = year;
+		this.quantity = quantity;
 	}
 
 	public long getId() {
@@ -55,6 +64,14 @@ public class Book {
 	public void setYear(int year) {
 		this.year = year;
 	}
+	
+	public int getQuantity(){
+		return this.quantity;
+	}
+	
+	public void setQuantity(int newQuantity){
+		this.quantity = newQuantity;
+	}
 
 	@Override
 	public boolean equals(Object o) {
@@ -84,6 +101,6 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book{" + "author='" + author + '\'' + ", title='" + title + '\'' + '}';
+		return "Book {" + "author='" + author + '\'' + ", title='" + title + '\'' + "year='" + year + '\'' + '}';
 	}
 }

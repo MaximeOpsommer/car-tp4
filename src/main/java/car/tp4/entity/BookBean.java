@@ -33,4 +33,10 @@ public class BookBean {
 		
 		return null;
 	}
+	
+	public Book getBookByInfos(String title, String author, int year){
+		Query query = entityManager.createQuery("SELECT m from Book as m where m.author = " + author + " and m.title = " + title + 
+				" and year = " + year);
+		return (Book) query.getResultList().get(0);
+	}
 }
