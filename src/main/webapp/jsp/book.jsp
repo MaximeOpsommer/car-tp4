@@ -5,17 +5,39 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/book.css">
         <title>Home</title>
     </head>
     <body>
         <h2>Existing books</h2>
-        <%
-            Collection<Book> books = (Collection<Book>) request.getAttribute("books");
-
-            for (Book book: books) {
-                out.print("Author: " + book.getAuthor() + ", Title: " + book.getTitle());
-                out.print("\n");
-            }
-        %>
+        
+        <table>
+        	<thead>
+        		<tr>
+        			<th>Author</th>
+        			<th>Title</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<%
+		            Collection<Book> books = (Collection<Book>) request.getAttribute("books");
+		
+		            for (Book book: books) {
+		                out.print("<tr>");
+		                out.print("<td>" + book.getAuthor() + "</td>");
+		                out.print("<td>" + book.getTitle() + "</td>");
+		                out.print("</tr>");
+		            }
+		        %>
+        	</tbody>
+        	
+        
+        </table>
+        
+        <form action="create">
+		    <input type="submit" value="Create book">
+		</form>
+        
+        
     </body>
 </html>

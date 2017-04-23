@@ -15,20 +15,20 @@ import java.io.IOException;
 @WebServlet("/books")
 public class BookServlet extends HttpServlet {
 
-  @EJB
-  private BookBean bookBean;
+	@EJB
+	private BookBean bookBean;
 
-  @Override
-  public void init() throws ServletException {
-    bookBean.addBook(new Book("The Lord of the Rings", "J. R. R. Tolkien"));
-  }
+	@Override
+	public void init() throws ServletException {
+		bookBean.addBook(new Book("J. R. R. Tolkien", "The Lord of the Rings"));
+	}
 
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-    request.setAttribute("books", bookBean.getAllBooks());
-    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/book.jsp");
-    dispatcher.forward(request, response);
-  }
+		request.setAttribute("books", bookBean.getAllBooks());
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/book.jsp");
+		dispatcher.forward(request, response);
+	}
 }
