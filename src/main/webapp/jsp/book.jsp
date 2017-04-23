@@ -6,6 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/book.css">
+        <script src="../js/jquery-3.2.1.js"></script>
         <title>Home</title>
     </head>
     <body>
@@ -13,7 +14,7 @@
         
         <br>
         
-        <label>Titre</label><input type="text" id="recherche-titre" onchange="filterByTitle()">
+        <label>Titre</label><input type="text" id="recherche-titre">
         
         <br>
         
@@ -60,17 +61,17 @@
         
         <a href="/panier">Voir mon panier</a>
         
-        <script type="text/javascript" >
+        <script>
         	
-        	var table = document.getElementById("table");        
-        	
-        	function filterByTitle() {
-        		var rows = table.getElementByTagName("tr");
-        		var i;
-        		for(i = 1; i < rows.length; i++) {
-        			
-        		}
-        	}
+        	$("#recherche-titre").on("change keydown keypress keyup", function() {
+        		$("#table > tbody > tr > td:nth-child(2)").each(function() {
+        			var text = $(this).html();
+        			if(text.indexOf($("#recherche-titre").val()) >= 0)
+        				$(this).parent().show();
+        			else
+        				$(this).parent().hide();
+        		});
+        	});
         
         </script>
         
