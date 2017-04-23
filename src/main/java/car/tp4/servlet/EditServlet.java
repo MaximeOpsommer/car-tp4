@@ -45,7 +45,8 @@ public class EditServlet extends HttpServlet {
 	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/book.jsp");
 	    String titre = request.getParameter("titre");
 	    String auteur = request.getParameter("auteur");
-	    bookBean.addBook(new Book(auteur, titre));
+	    int annee = Integer.parseInt(request.getParameter("annee"));
+	    bookBean.addBook(new Book(auteur, titre, annee));
 	    dispatcher.forward(request, response);
 	}
 

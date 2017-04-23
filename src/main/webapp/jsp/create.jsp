@@ -13,6 +13,7 @@
 	<form method="POST" action="create">
 		<label>Titre</label><input type="text" name="titre"> <br />
 		<label>Auteur</label><input type="text" name="auteur"> <br />
+		<label>Année</label><input type="number" name="annee"> <br />
 		<input type="submit" value="Créer" />
 	</form>
 </body>

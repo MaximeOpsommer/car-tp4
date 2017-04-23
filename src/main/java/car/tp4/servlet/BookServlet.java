@@ -20,7 +20,7 @@ public class BookServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		bookBean.addBook(new Book("J. R. R. Tolkien", "The Lord of the Rings"));
+		bookBean.addBook(new Book("J. R. R. Tolkien", "The Lord of the Rings", 1970));
 	}
 
 	@Override

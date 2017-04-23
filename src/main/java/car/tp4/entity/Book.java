@@ -12,18 +12,24 @@ public class Book {
 	private long id;
 	private String author;
 	private String title;
+	private int year;
 
 	public Book() {
 		
 	}
 	
-	public Book(String author, String title) {
+	public Book(String author, String title, int year) {
 		this.author = author;
 		this.title = title;
+		this.year = year;
 	}
 
 	public long getId() {
 		return this.id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 	public String getAuthor() {
@@ -41,6 +47,14 @@ public class Book {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	public int getYear() {
+		return this.year;
+	}
+	
+	public void setYear(int year) {
+		this.year = year;
+	}
 
 	@Override
 	public boolean equals(Object o) {
@@ -54,6 +68,8 @@ public class Book {
 		if (id != book.id)
 			return false;
 		if (!author.equals(book.author))
+			return false;
+		if(!(year == book.year))
 			return false;
 		return title.equals(book.title);
 	}

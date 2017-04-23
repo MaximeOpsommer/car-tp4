@@ -11,7 +11,13 @@
     <body>
         <h2>Existing books</h2>
         
-        <table>
+        <br>
+        
+        <label>Titre</label><input type="text" id="recherche-titre" onchange="filterByTitle()">
+        
+        <br>
+        
+        <table id="table">
         	<thead>
         		<tr>
         			<th>Author</th>
@@ -43,6 +49,22 @@
         <form action="create">
 		    <input type="submit" value="Create book">
 		</form>
+        
+        
+        
+        <script type="text/javascript" >
+        	
+        	var table = document.getElementById("table");        
+        	
+        	function filterByTitle() {
+        		var rows = table.getElementByTagName("tr");
+        		var i;
+        		for(i = 1; i < rows.length; i++) {
+        			
+        		}
+        	}
+        
+        </script>
         
         
     </body>
