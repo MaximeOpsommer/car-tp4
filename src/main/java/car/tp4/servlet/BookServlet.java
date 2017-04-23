@@ -20,7 +20,13 @@ public class BookServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		bookBean.addBook(new Book("J. R. R. Tolkien", "The Lord of the Rings", 1970));
+		if(bookBean.isEmpty()) {			
+			bookBean.addBook(new Book("J. R. R. Tolkien", "The Lord of the Rings", 1970));
+			bookBean.addBook(new Book("Matthieu Bellamy", "La pizza bonne et peu chère, c'est par ici !", 2015));
+			bookBean.addBook(new Book("Camille Breuzon", "Camille et la bite", 2016));
+			bookBean.addBook(new Book("Alexandre Delassus", "Le caca, c'est merveilleux", 2017));
+			bookBean.addBook(new Book("Maxime Opsommer", "J'suis dans l'turfu !", 2018));
+		}
 	}
 
 	@Override

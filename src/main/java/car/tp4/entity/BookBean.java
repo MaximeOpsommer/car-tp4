@@ -23,6 +23,10 @@ public class BookBean {
 		return query.getResultList();
 	}
 	
+	public boolean isEmpty() {
+		return getAllBooks().isEmpty();
+	}
+	
 	public Book getBookById(long id) {
 		List<Book> books = getAllBooks();
 		

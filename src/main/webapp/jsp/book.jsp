@@ -5,8 +5,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+        
         <link rel="stylesheet" type="text/css" href="css/book.css">
+        
+        <script src="../js/bootstrap.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
         <script src="../js/jquery-3.2.1.js"></script>
+        <script src="../js/npm.js"></script>
+        
+        
         <title>Home</title>
     </head>
     <body>
@@ -23,6 +35,13 @@
         		<tr>
         			<th>Author</th>
         			<th>Title</th>
+        			<th>
+        				<label>Year</label>
+        				<a>
+        					<span id="yearSorting" class="glyphicon glyphicon-chevron-down"></span>
+        				</a>
+        			</th>
+        			<th>Edit</th>
         		</tr>
         	</thead>
         	<tbody>
@@ -33,6 +52,7 @@
 		                out.print("<tr>");
 		                out.print("<td>" + book.getAuthor() + "</td>");
 		                out.print("<td>" + book.getTitle() + "</td>");
+		                out.print("<td>" + book.getYear() + "</td>");
 		                
 		                // bouton Editer
 		                out.print("<td><form method=\"GET\" action=\"edit?id=" + book.getId() + "\">");
@@ -41,10 +61,10 @@
 			    		out.print("</form></td>");
 			    		
 			    		//bouton ajouter au panier
-			    		out.print("<td><form method=\"POST\" action=\"ajouterAuPanier?id=" + book.getId() + "\">");
-		                	out.print("<div name=\"id\" value=\"" + book.getId() + "\"></div>");
-			    		    out.print("<input type=\"submit\" value=\"Ajouter au panier\">");
-			    		out.print("</form></td>");
+			    		 out.print("<td><form method=\"POST\" action=\"ajouterAuPanier?id=" + book.getId() + "\">");
+			    		 	out.print("<div name=\"id\" value=\"" + book.getId() + "\"></div>");
+			    			 out.print("<input type=\"submit\" value=\"Ajouter au panier\">");
+			    		 out.print("</form></td>");
 			    		
 		                out.print("</tr>");
 		            }
@@ -54,15 +74,19 @@
         
         </table>
         
-        <form action="create">
+        <form id="createForm" action="create">
 		    <input type="submit" value="Create book">
 		</form>
-		
+        
         
         <a href="/panier">Voir mon panier</a>
         
+        
         <script>
         	
+       		triParAnnee("desc");
+        
+        	// Filtrage par titre
         	$("#recherche-titre").on("change keydown keypress keyup", function() {
         		$("#table > tbody > tr > td:nth-child(2)").each(function() {
         			var text = $(this).html();
@@ -72,6 +96,33 @@
         				$(this).parent().hide();
         		});
         	});
+        	
+        	// Tri par annee
+        	$("#yearSorting").click(function() {
+        		if($(this).hasClass("glyphicon-chevron-down")) {
+        			$(this).removeClass("glyphicon-chevron-down");
+        			$(this).addClass("glyphicon-chevron-up");
+        			triParAnnee("asc");
+        		} else {
+        			$(this).removeClass("glyphicon-chevron-up");
+        			$(this).addClass("glyphicon-chevron-down");
+        			triParAnnee("desc");
+        		}
+        	});
+        	
+        	function triParAnnee(order) {
+        		var asc = order === "asc";
+        		var tbody = $("#table").find("tbody");
+        		
+        		tbody.find("tr").sort(function(a, b) {
+        			if (asc) {
+        	            return $('td:first', a).text().localeCompare($('td:nth-child(3)', b).text());
+        	        } else {
+        	            return $('td:first', b).text().localeCompare($('td:nth-child(3)', a).text());
+        	        }
+        		}).appendTo(tbody);
+        	}
+        	
         
         </script>
         
