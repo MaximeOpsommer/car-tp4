@@ -23,7 +23,15 @@ public class EditServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setAttribute("books", bookBean.getAllBooks());
+		long id = Long.parseLong(request.getParameter("id"));
+		
+		Book book = bookBean.getBookById(id);
+		
+		if(book != null) {
+			request.setAttribute("author", book.getAuthor());
+			request.setAttribute("title", book.getTitle());
+		}
+		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/edit.jsp");
 		dispatcher.forward(request, response);
 	}

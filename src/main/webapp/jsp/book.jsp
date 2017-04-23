@@ -26,6 +26,12 @@
 		                out.print("<tr>");
 		                out.print("<td>" + book.getAuthor() + "</td>");
 		                out.print("<td>" + book.getTitle() + "</td>");
+		                
+		                // bouton Editer
+		                out.print("<td><form method=\"GET\" action=\"edit?id=" + book.getId() + "\">");
+		                	out.print("<div name=\"id\" value=\"" + book.getId() + "\"></div>");
+			    		    out.print("<input type=\"submit\" value=\"Edit\">");
+			    		out.print("</form></td>");
 		                out.print("</tr>");
 		            }
 		        %>
