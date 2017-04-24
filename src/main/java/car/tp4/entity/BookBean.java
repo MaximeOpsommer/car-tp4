@@ -5,6 +5,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -13,6 +15,8 @@ public class BookBean {
 
 	@PersistenceContext(unitName = "book-pu")
 	private EntityManager entityManager;
+	
+	private List<Book> books = new ArrayList<Book>();
 
 	public void addBook(Book book) {
 		entityManager.persist(book);
@@ -20,7 +24,8 @@ public class BookBean {
 
 	public List<Book> getAllBooks() {
 		Query query = entityManager.createQuery("SELECT m from Book as m");
-		return query.getResultList();
+		books =  query.getResultList();
+		return books;
 	}
 	
 	public boolean isEmpty() {
@@ -28,7 +33,7 @@ public class BookBean {
 	}
 	
 	public Book getBookById(long id) {
-		List<Book> books = getAllBooks();
+		//List<Book> books = getAllBooks();
 		
 		for(Book b : books) {
 			if(b.getId() == id)
@@ -38,8 +43,15 @@ public class BookBean {
 		return null;
 	}
 	
+	public void decrementerStock(Book b){
+		for(Book book : books){
+			if(book.equals(book))
+				book.setQuantity(book.getQuantity() - 1);
+		}
+	}
+	
 	public Book getBookByInfos(String title, String author, int year){
-		List<Book> books = getAllBooks();
+		//List<Book> books = getAllBooks();
 		for(Book b : books) {
 			if(b.getAuthor().equals(author) && b.getTitle().equals(title) && b.getYear() == year)
 				return b;
