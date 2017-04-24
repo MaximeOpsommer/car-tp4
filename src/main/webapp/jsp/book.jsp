@@ -111,6 +111,10 @@
 				for (Book book : panier) {
 					out.print("<tr>");
 					out.print("<td>" + book.getAuthor() + ", " + book.getTitle() + ", " + book.getYear() + "</td>");
+					out.print("<td><form method=\"POST\" action=\"/panier\">"+
+										"<input hidden name=\"id\" value=\""+ book.getId() +"\">"+
+										"<input type=\"submit\" value=\" X \">"+
+								   "</form></td>");
 					out.print("</tr>");
 				}
 			%>
@@ -192,18 +196,6 @@
 			});
 		});
         	
-        	$("#button-addPanier").click(function(){
-        	<%-- 	var id = $(this).data("id");
-        		<% 
-        		
-        			for(Book b : books) {
-        				if(Long.parseLong(%>id<%).equals(b.getId())) {
-        					
-        				}
-        			}
-        		%> --%>
-        		
-        	});
         
         </script>
 

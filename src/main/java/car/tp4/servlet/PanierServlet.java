@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import car.tp4.entity.Book;
+import car.tp4.entity.BookBean;
 import car.tp4.entity.PanierBean;
 
 @WebServlet("/panier")
@@ -17,6 +19,9 @@ public class PanierServlet extends HttpServlet{
 	
 	@EJB
 	private PanierBean panierBean;
+	
+	@EJB
+	private BookBean bookBean;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -27,6 +32,18 @@ public class PanierServlet extends HttpServlet{
 		System.out.println(panierBean.getPanier());
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/panier.jsp");
 		dispatcher.forward(request, response);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		long id = Long.parseLong(request.getParameter("id"));
+		
+		panierBean.removeBook(id);
+		bookBean.incrementerStock(id);
+		
+		response.sendRedirect("/books");
 	}
 
 }

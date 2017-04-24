@@ -27,5 +27,22 @@ public class PanierBean {
 		return panier;
 	}
 	
+	public void removeBook(long id){
+		int index = 0;
+		boolean flag = false;
+		for(Book b : panier){
+			if(id == b.getId()){
+				index = panier.indexOf(b);
+				flag = true;
+				break;
+			}
+		}
+		
+		if(flag){
+			panier.remove(index);
+		}
+		
+	}
+	
 
 }

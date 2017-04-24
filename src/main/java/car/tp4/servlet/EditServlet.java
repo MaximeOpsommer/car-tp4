@@ -54,20 +54,12 @@ public class EditServlet extends HttpServlet {
 		
 		boolean livreAjoute = false;
 		if(b.getQuantity() > 0){
-			System.out.println("Quantite = " + b.getQuantity());
-			//b.setQuantity(b.getQuantity() -1);
-			bookBean.decrementerStock(b);
-			
+			bookBean.decrementerStock(b.getId());
 			panierBean.addBook(b);
 			livreAjoute = true;
-			
-			System.out.println("Nouvelle Quantite = " + b.getQuantity());
 		}
 		
 		response.sendRedirect("books");
-		//ServletContext context = getServletContext();
-		//RequestDispatcher dispatcher = context.getRequestDispatcher("/jsp/book.jsp");
-		//dispatcher.forward(request, response);
 		
 	}
 

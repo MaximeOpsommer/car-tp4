@@ -43,11 +43,17 @@ public class BookBean {
 		return null;
 	}
 	
-	public void decrementerStock(Book b){
-		for(Book book : books){
-			if(book.equals(book))
-				book.setQuantity(book.getQuantity() - 1);
-		}
+	
+	public void decrementerStock(long id) {
+		Query query = entityManager.createQuery("UPDATE Book as b SET b.quantity = (b.quantity - 1) WHERE b.id=:id");
+		query.setParameter("id", id);
+		query.executeUpdate();
+	}
+	
+	public void incrementerStock(long id) {
+		Query query = entityManager.createQuery("UPDATE Book as b SET b.quantity = (b.quantity + 1) WHERE b.id=:id");
+		query.setParameter("id", id);
+		query.executeUpdate();
 	}
 	
 	public Book getBookByInfos(String title, String author, int year){
