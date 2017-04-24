@@ -101,6 +101,6 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book {" + "author='" + author + '\'' + ", title='" + title + '\'' + "year='" + year + '\'' + '}';
+		return "Book {" + "author='" + author + '\'' + ", title='" + title + '\'' + ", year='" + year + '\'' + '}';
 	}
 }
