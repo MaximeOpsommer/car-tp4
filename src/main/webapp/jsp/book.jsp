@@ -67,7 +67,8 @@
 				<th><label>Year</label> <a> <span id="yearSorting"
 						class="glyphicon glyphicon-chevron-down"></span>
 				</a></th>
-				<th>Edit</th>
+				<th>Quantité disponible</th>
+				<th>Détail</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -78,8 +79,9 @@
 					out.print("<td>" + book.getAuthor() + "</td>");
 					out.print("<td>" + book.getTitle() + "</td>");
 					out.print("<td>" + book.getYear() + "</td>");
+					out.print("<td>" + book.getQuantity() + "</td>");
 
-					// bouton Editer
+					// bouton détail
 					out.print("<td><form method=\"GET\" action=\"/edit\">");
 					out.print("<input hidden name=\"id\" value=\"" + book.getId() + "\"></div>");
 					out.print("<input type=\"submit\" value=\"Detail\">");

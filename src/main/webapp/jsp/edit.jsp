@@ -5,6 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Bibliothèque en ligne : Editer</title>
+
+<link rel="stylesheet" type="text/css" href="css/book.css">
+
 </head>
 <body>
 
@@ -13,13 +16,18 @@
 	<% String titre = (String)request.getAttribute("title"); 
 		String auteur = (String)request.getAttribute("author");
 		String annee = (String)request.getAttribute("year"); 
+		int quantity = Integer.parseInt((String)request.getAttribute("quantity"));
 		
 		
 		out.print("<form method=\"POST\" action=\"/edit\">");
 		out.print("	<input type=\"text\" name=\"title\" value=\""+  titre  + "\">");
 		out.print("	<input type=\"text\" name=\"author\" value=\""+  auteur  + "\">");
 		out.print("	<input type=\"text\" name=\"year\" value=\""+  annee  + "\">");
-		out.print("	<input type=\"submit\" value=\"Ajouter au panier\">");
+		if(quantity > 0){
+			out.print("	<input type=\"submit\" value=\"Ajouter au panier\">");
+		} else {
+			out.print("<label class=\"nonDispo\">Ce livre n'est plus disponible actuellement</label>");
+		}
 		
 		out.print("</form>");
 		

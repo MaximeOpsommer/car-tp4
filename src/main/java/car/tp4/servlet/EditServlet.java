@@ -35,6 +35,7 @@ public class EditServlet extends HttpServlet {
 			request.setAttribute("author", book.getAuthor());
 			request.setAttribute("title", book.getTitle());
 			request.setAttribute("year", book.getYear() + "");
+			request.setAttribute("quantity", book.getQuantity()+"");
 		}
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/edit.jsp");
