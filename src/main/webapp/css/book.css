@@ -7,3 +7,8 @@ table, th, td {
 #createForm {
 	padding: 5px;
 }
+
+.row {
+	padding: 5px;
+	margin: 5px;
+}
