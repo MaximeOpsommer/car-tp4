@@ -97,45 +97,64 @@
         
         
         <script>
-        	
-       		triParAnnee("desc");
-        
-        	// Filtrage par titre
-        	$("#recherche-titre").on("change keydown keypress keyup", function() {
-        		$("#table > tbody > tr > td:nth-child(2)").each(function() {
-        			var text = $(this).html();
-        			if(text.indexOf($("#recherche-titre").val()) >= 0)
-        				$(this).parent().show();
-        			else
-        				$(this).parent().hide();
-        		});
-        	});
-        	
-        	// Tri par annee
-        	$("#yearSorting").click(function() {
-        		if($(this).hasClass("glyphicon-chevron-down")) {
-        			$(this).removeClass("glyphicon-chevron-down");
-        			$(this).addClass("glyphicon-chevron-up");
-        			triParAnnee("asc");
-        		} else {
-        			$(this).removeClass("glyphicon-chevron-up");
-        			$(this).addClass("glyphicon-chevron-down");
-        			triParAnnee("desc");
-        		}
-        	});
-        	
-        	function triParAnnee(order) {
-        		var asc = order === "asc";
-        		var tbody = $("#table").find("tbody");
-        		
-        		tbody.find("tr").sort(function(a, b) {
-        			if (asc) {
-        	            return $('td:first', a).text().localeCompare($('td:nth-child(3)', b).text());
-        	        } else {
-        	            return $('td:first', b).text().localeCompare($('td:nth-child(3)', a).text());
-        	        }
-        		}).appendTo(tbody);
-        	}
+        TriParAnnee("desc");
+
+		// Filtrage par titre
+		$("#recherche-titre").on("change keydown keypress keyup", function() {
+			$("#table > tbody > tr > td:nth-child(2)").each(function() {
+				var text = $(this).html();
+				if (text.indexOf($("#recherche-titre").val()) >= 0)
+					$(this).parent().show();
+				else
+					$(this).parent().hide();
+			});
+		});
+
+		// Tri par annee
+		$("#yearSorting").click(function() {
+			if ($(this).hasClass("glyphicon-chevron-down")) {
+				$(this).removeClass("glyphicon-chevron-down");
+				$(this).addClass("glyphicon-chevron-up");
+				TriParAnnee("asc");
+			} else {
+				$(this).removeClass("glyphicon-chevron-up");
+				$(this).addClass("glyphicon-chevron-down");
+				TriParAnnee("desc");
+			}
+		});
+
+		function TriParAnnee(order) {
+			
+			var asc = order === "asc";
+			var rows = $('#table tbody  tr').get();
+
+			rows.sort(function(a, b) {
+
+				var A = $(a).children('td').eq(2).text();
+				var B = $(b).children('td').eq(2).text();
+
+				if (A < B) {
+					if (asc)
+						return -1;
+					else
+						return 1;
+				}
+
+				if (A > B) {
+					if (asc)
+						return 1;
+					else
+						return -1;
+				}
+
+				return 0;
+
+			});
+
+			$.each(rows, function(index, row) {
+				$('#table').children('tbody').append(row);
+			});
+		}
         	
         	$("#button-addPanier").click(function(){
         	<%-- 	var id = $(this).data("id");
