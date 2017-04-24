@@ -61,10 +61,7 @@
 			    		out.print("</form></td>");
 			    		
 			    		//bouton ajouter au panier
-			    		 out.print("<td><form method=\"POST\" action=\"ajouterAuPanier?id=" + book.getId() + "\">");
-			    		 	out.print("<div name=\"id\" value=\"" + book.getId() + "\"></div>");
-			    			 out.print("<input type=\"submit\" value=\"Ajouter au panier\">");
-			    		 out.print("</form></td>");
+			    		 out.print("<td><button class=\"button-addPanier\" data-id=\""+ book.getId() +"\">Ajouter au panier</button></td>");
 			    		
 		                out.print("</tr>");
 		            }
@@ -79,7 +76,26 @@
 		</form>
         
         
-        <a href="/panier">Voir mon panier</a>
+        <br>
+        <!-- panier -->
+        <table>
+        	<thead>
+        		<th>
+        			PANIER
+        		</th>
+        	</thead>
+        	<tbody>
+        		<%
+		            Collection<Book> panier = (Collection<Book>) request.getAttribute("panier");
+		
+		            for (Book book: panier) {
+		                out.print("<tr>");
+		                out.print("<td>" + book.getAuthor() + ", "+ book.getTitle() + ", " + book.getYear() + "</td>");
+		                out.print("</tr>");
+		            }
+		        %>
+        	</tbody>
+        </table>
         
         
         <script>
@@ -123,6 +139,12 @@
         		}).appendTo(tbody);
         	}
         	
+        	$("#button-addPanier").click(function(){
+        		var id = $(this).data("id");
+        		var book = <% Collection<Book> books = (Collection<Book>) request.getAttribute("books");
+        					  Book b  = books.
+        				    %>
+        	});
         
         </script>
         

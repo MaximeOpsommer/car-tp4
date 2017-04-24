@@ -29,10 +29,11 @@ public class AjouterAuPanierServlet extends HttpServlet{
 
 		long id = Long.parseLong(request.getParameter("id"));
 		Book b = bookBean.getBookById(id);
+		if(b.getQuantity())
 	    panierBean.addBook(b);
 	    
 		request.setAttribute("panier", panierBean.getPanier());
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/panier.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/book.jsp");
 		dispatcher.forward(request, response);
 	}
 }
