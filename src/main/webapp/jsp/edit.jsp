@@ -8,15 +8,24 @@
 </head>
 <body>
 
-	<h1>Editer un livre :</h1>
+	<h1>Detail d'un livre :</h1>
 
-	<% String titre = request.getParameter("titre"); %>
-	<% String auteur = request.getParameter("auteur"); %>
-
-	<form method="POST" action="edit">
-		<label>Titre</label><input type="text" name="titre" value="<%= titre %>"> <br />
-		<label>Auteur</label><input type="text" name="auteur" value="<%= auteur %>"> <br />
-		<input type="submit" value="Edit" />
+	<% String titre = (String)request.getAttribute("title"); 
+		String auteur = (String)request.getAttribute("author");
+		String annee = (String)request.getAttribute("year"); 
+		
+		
+		out.print("<form method=\"POST\" action=\"/edit\">");
+		out.print("	<input type=\"text\" name=\"title\" value=\""+  titre  + "\">");
+		out.print("	<input type=\"text\" name=\"author\" value=\""+  auteur  + "\">");
+		out.print("	<input type=\"text\" name=\"year\" value=\""+  annee  + "\">");
+		out.print("	<input type=\"submit\" value=\"Ajouter au panier\">");
+		
+		out.print("</form>");
+		
+		
+		%>
+	
 	</form>
 </body>
 </html>

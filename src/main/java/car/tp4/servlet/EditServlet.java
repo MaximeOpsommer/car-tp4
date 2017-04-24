@@ -12,12 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import car.tp4.entity.Book;
 import car.tp4.entity.BookBean;
+import car.tp4.entity.PanierBean;
 
 @WebServlet("/edit")
 public class EditServlet extends HttpServlet {
 
 	@EJB
 	private BookBean bookBean;
+	
+	@EJB
+	private PanierBean panierBean;
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,10 +30,19 @@ public class EditServlet extends HttpServlet {
 		long id = Long.parseLong(request.getParameter("id"));
 		
 		Book book = bookBean.getBookById(id);
+		System.out.println("HERE I AM, IN EDIT SEVLET");
 		
 		if(book != null) {
+			System.out.println("AND YOUR BOOK IS NOT NULL, WELL DONE");
+			System.out.println(book.getAuthor());
 			request.setAttribute("author", book.getAuthor());
 			request.setAttribute("title", book.getTitle());
+			request.setAttribute("year", book.getYear() + "");
+		} else {
+			System.out.println("AND YOUT BOOK IS NULL ASSHOLE");
+			request.setAttribute("author", "caca");
+			request.setAttribute("title", "bite");
+			request.setAttribute("year", "boob");
 		}
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/edit.jsp");
@@ -41,13 +54,24 @@ public class EditServlet extends HttpServlet {
 			throws ServletException, IOException
 	{
 		request.setCharacterEncoding("UTF-8");
-
-	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/book.jsp");
-	    String titre = request.getParameter("titre");
-	    String auteur = request.getParameter("auteur");
-	    int annee = Integer.parseInt(request.getParameter("annee"));
-	    bookBean.addBook(new Book(auteur, titre, annee));
-	    dispatcher.forward(request, response);
+		
+		String titre = request.getParameter("title");
+		String auteur = request.getParameter("author");
+		int annee = Integer.parseInt(request.getParameter("year"));
+		System.out.println("HEY? YOU WANT TO ADD A BOOK TO YOUR CART ?");
+		Book b = bookBean.getBookByInfos(titre, auteur, annee);
+		System.out.println(b.getAuthor());
+		
+		if(b.getQuantity() > 0){
+			b.setQuantity(b.getQuantity() -1);
+			panierBean.addBook(b);
+		}
+		
+		System.out.println(panierBean.getPanier());
+		
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/book.jsp");
+		dispatcher.forward(request, response);
+		
 	}
 
 }

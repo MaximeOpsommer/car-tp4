@@ -55,13 +55,11 @@
 		                out.print("<td>" + book.getYear() + "</td>");
 		                
 		                // bouton Editer
-		                out.print("<td><form method=\"GET\" action=\"edit?id=" + book.getId() + "\">");
-		                	out.print("<div name=\"id\" value=\"" + book.getId() + "\"></div>");
-			    		    out.print("<input type=\"submit\" value=\"Edit\">");
+		                out.print("<td><form method=\"GET\" action=\"/edit\">");
+		                	out.print("<input hidden name=\"id\" value=\"" + book.getId() + "\"></div>");
+			    		    out.print("<input type=\"submit\" value=\"Detail\">");
 			    		out.print("</form></td>");
 			    		
-			    		//bouton ajouter au panier
-			    		 out.print("<td><button class=\"button-addPanier\" data-id=\""+ book.getId() +"\">Ajouter au panier</button></td>");
 			    		
 		                out.print("</tr>");
 		            }
@@ -140,10 +138,16 @@
         	}
         	
         	$("#button-addPanier").click(function(){
-        		var id = $(this).data("id");
-        		var book = <% Collection<Book> books = (Collection<Book>) request.getAttribute("books");
-        					  Book b  = books.
-        				    %>
+        	<%-- 	var id = $(this).data("id");
+        		<% 
+        		
+        			for(Book b : books) {
+        				if(Long.parseLong(%>id<%).equals(b.getId())) {
+        					
+        				}
+        			}
+        		%> --%>
+        		
         	});
         
         </script>
