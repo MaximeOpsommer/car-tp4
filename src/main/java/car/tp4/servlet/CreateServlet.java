@@ -13,9 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 import car.tp4.entity.Book;
 import car.tp4.entity.BookBean;
 
+/**
+ * Servlet permettant la création d'un livre et son ajout dans la bibliotheque
+ * 
+ * @author Serial
+ *
+ */
 @WebServlet("/create")
 public class CreateServlet extends HttpServlet {
 
+	/**
+	 * la bibliotheque de livre
+	 */
 	@EJB
 	private BookBean bookBean;
 	

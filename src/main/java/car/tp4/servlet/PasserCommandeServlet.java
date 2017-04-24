@@ -14,12 +14,18 @@ import car.tp4.entity.Book;
 import car.tp4.entity.BookBean;
 import car.tp4.entity.PanierBean;
 
+/**
+ * Servlet permettant de valider une commande d'un panier 
+ * 
+ * @author Serial
+ *
+ */
 @WebServlet("/passerCommande")
 public class PasserCommandeServlet extends HttpServlet{
-
-	@EJB
-	private BookBean bookBean;
 	
+	/**
+	 * le panier de commande 
+	 */
 	@EJB
 	private PanierBean panierBean;
 	

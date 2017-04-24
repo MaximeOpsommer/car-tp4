@@ -13,12 +13,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Servlet permettant la récupération des livres de la bibliotheque et du panier
+ * 
+ * @author Serial
+ *
+ */
 @WebServlet("/books")
 public class BookServlet extends HttpServlet {
 
+	/**
+	 * la biliotheque de livres
+	 */
 	@EJB
 	private BookBean bookBean;
 	
+	/**
+	 * le panier de commande
+	 */
 	@EJB
 	private PanierBean panierBean;
 

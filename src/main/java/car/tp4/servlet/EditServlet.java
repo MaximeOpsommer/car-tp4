@@ -15,14 +15,20 @@ import car.tp4.entity.Book;
 import car.tp4.entity.BookBean;
 import car.tp4.entity.PanierBean;
 
+/**
+ * Servlet permettant de visualiser le détail d'un livre
+ * 
+ * @author Serial
+ *
+ */
 @WebServlet("/edit")
 public class EditServlet extends HttpServlet {
 
+	/**
+	 * la bibliotheque de livre
+	 */
 	@EJB
 	private BookBean bookBean;
-	
-	@EJB
-	private PanierBean panierBean;
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

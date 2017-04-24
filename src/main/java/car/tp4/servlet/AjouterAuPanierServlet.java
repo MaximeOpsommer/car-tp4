@@ -14,12 +14,24 @@ import car.tp4.entity.Book;
 import car.tp4.entity.BookBean;
 import car.tp4.entity.PanierBean;
 
+/**
+ * Servlet permettant l'ajout d'un livre dans le panier
+ * 
+ * @author Serial
+ *
+ */
 @WebServlet("/ajouterAuPanier")
 public class AjouterAuPanierServlet extends HttpServlet{
 
+	/**
+	 * le panier de commande
+	 */
 	@EJB
 	private PanierBean panierBean;
 	
+	/**
+	 * la biliotheque de livres 
+	 */
 	@EJB
 	private BookBean bookBean;
 	

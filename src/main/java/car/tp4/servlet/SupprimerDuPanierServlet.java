@@ -12,12 +12,25 @@ import javax.servlet.http.HttpServletResponse;
 import car.tp4.entity.BookBean;
 import car.tp4.entity.PanierBean;
 
+/**
+ * Servlet permettant la suppression d'un livre du panier de commande
+ * et la mise à jour du stock dans la bibliotheque
+ * 
+ * @author Serial
+ *
+ */
 @WebServlet("/supprimerDuPanier")
 public class SupprimerDuPanierServlet extends HttpServlet{
 	
+	/**
+	 * le panier de commande
+	 */
 	@EJB
 	private PanierBean panierBean;
 	
+	/**
+	 * la bibliotheque de livres
+	 */
 	@EJB
 	private BookBean bookBean;
 	
