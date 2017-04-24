@@ -25,14 +25,23 @@ public class AjouterAuPanierServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		long id = Long.parseLong(request.getParameter("id"));
-		Book b = bookBean.getBookById(id);
-	    panierBean.addBook(b);
-	    
-		request.setAttribute("panier", panierBean.getPanier());
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/book.jsp");
-		dispatcher.forward(request, response);
+			throws ServletException, IOException
+	{
+		request.setCharacterEncoding("UTF-8");
+		
+		String titre = request.getParameter("title");
+		String auteur = request.getParameter("author");
+		int annee = Integer.parseInt(request.getParameter("year"));
+		Book b = bookBean.getBookByInfos(titre, auteur, annee);
+		
+		boolean livreAjoute = false;
+		if(b.getQuantity() > 0){
+			bookBean.decrementerStock(b.getId());
+			panierBean.addBook(b);
+			livreAjoute = true;
+		}
+		
+		response.sendRedirect("books");
+		
 	}
 }

@@ -19,7 +19,6 @@ public class PanierBean {
 	private List<Book> panier = new ArrayList<Book>();
 	
 	public void addBook(Book book){
-//		entityManager.persist(book);
 		panier.add(book);
 	}
 	

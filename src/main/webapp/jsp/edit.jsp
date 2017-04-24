@@ -19,10 +19,10 @@
 		int quantity = Integer.parseInt((String)request.getAttribute("quantity"));
 		
 		
-		out.print("<form method=\"POST\" action=\"/edit\">");
-		out.print("	<input type=\"text\" name=\"title\" value=\""+  titre  + "\">");
-		out.print("	<input type=\"text\" name=\"author\" value=\""+  auteur  + "\">");
-		out.print("	<input type=\"text\" name=\"year\" value=\""+  annee  + "\">");
+		out.print("<form method=\"POST\" action=\"/ajouterAuPanier\">");
+		out.print("	<input readonly type=\"text\" name=\"title\" value=\""+  titre  + "\">");
+		out.print("	<input readonly type=\"text\" name=\"author\" value=\""+  auteur  + "\">");
+		out.print("	<input readonly type=\"text\" name=\"year\" value=\""+  annee  + "\">");
 		if(quantity > 0){
 			out.print("	<input type=\"submit\" value=\"Ajouter au panier\">");
 		} else {

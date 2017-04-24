@@ -113,7 +113,7 @@
 				for (Book book : panier) {
 					out.print("<tr>");
 					out.print("<td>" + book.getAuthor() + ", " + book.getTitle() + ", " + book.getYear() + "</td>");
-					out.print("<td><form method=\"POST\" action=\"/panier\">"+
+					out.print("<td><form method=\"POST\" action=\"/supprimerDuPanier\">"+
 										"<input hidden name=\"id\" value=\""+ book.getId() +"\">"+
 										"<input type=\"submit\" value=\" X \">"+
 								   "</form></td>");
@@ -122,6 +122,18 @@
 			%>
 		</tbody>
 	</table>
+	<%
+		if(!panier.isEmpty()){
+			out.print("<div>"+
+					"<form method=\"POST\" action=\"/passerCommande\">"+
+					"<input type=\"submit\" value=\"Passer la commande\">"+
+				"</form>"+
+			"</div>");
+		}
+	
+	%>
+	
+	
 
 
 	<script>

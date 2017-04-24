@@ -33,8 +33,6 @@ public class BookBean {
 	}
 	
 	public Book getBookById(long id) {
-		//List<Book> books = getAllBooks();
-		
 		for(Book b : books) {
 			if(b.getId() == id)
 				return b;
@@ -57,7 +55,6 @@ public class BookBean {
 	}
 	
 	public Book getBookByInfos(String title, String author, int year){
-		//List<Book> books = getAllBooks();
 		for(Book b : books) {
 			if(b.getAuthor().equals(author) && b.getTitle().equals(title) && b.getYear() == year)
 				return b;

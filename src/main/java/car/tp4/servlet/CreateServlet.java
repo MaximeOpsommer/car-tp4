@@ -34,13 +34,10 @@ public class CreateServlet extends HttpServlet {
 	{
 		request.setCharacterEncoding("UTF-8");
 
-	    //RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/book.jsp");
 	    String titre = request.getParameter("titre");
 	    String auteur = request.getParameter("auteur");
 	    int annee = Integer.parseInt(request.getParameter("annee"));
-	    //request.setAttribute("books", bookBean.getAllBooks());
 	    bookBean.addBook(new Book(auteur, titre, annee));
-	    //dispatcher.forward(request, response);
 	    response.sendRedirect("books");
 	}
 

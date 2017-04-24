@@ -42,26 +42,6 @@ public class EditServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException
-	{
-		request.setCharacterEncoding("UTF-8");
-		
-		String titre = request.getParameter("title");
-		String auteur = request.getParameter("author");
-		int annee = Integer.parseInt(request.getParameter("year"));
-		Book b = bookBean.getBookByInfos(titre, auteur, annee);
-		
-		boolean livreAjoute = false;
-		if(b.getQuantity() > 0){
-			bookBean.decrementerStock(b.getId());
-			panierBean.addBook(b);
-			livreAjoute = true;
-		}
-		
-		response.sendRedirect("books");
-		
-	}
+	
 
 }
